@@ -1,21 +1,31 @@
 require('@nomiclabs/hardhat-ethers')
 
-const API_URL = "https://base-goerli.g.alchemy.com/v2/b9m0QbpgVsV5Wwl3G7bAkSA7l5OpLK-x";
-const PRIVATE_KEY = "3a0c5ab475f8354c9a42587564905cf640cf9d0a95c5c5c35be93441bbc68c21"
-const PUBLIC_KEY = "0xFb6D6B739eF087B8F196f02D034E6B007A1Ed011";
-let pk = 'f77f0dd605958b736efa5a1b1616a012f1ac35299c172d6aeb9b5130c957b30d'
+const API_URL = "";
+const PRIVATE_KEY = ""
+const PUBLIC_KEY = "";
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: "0.8.18",
+  etherscan: {
+    apiKey: {
+      blast_sepolia: "blast_sepolia", // apiKey is not required, just set a placeholder
+    },
+    customChains: [
+      {
+        network: "blast_sepolia",
+        chainId: 168587773,
+        urls: {
+          apiURL: "https://api.routescan.io/v2/network/testnet/evm/168587773/etherscan",
+          browserURL: "https://testnet.blastscan.io"
+        }
+      }
+    ]
+  },
   networks: {
-    base :{
-      url: API_URL,
-      accounts: [`0x${PRIVATE_KEY}`]
-    }
-    ,blast :{
-      url: 'https://testnet.blast.io',
-      accounts: [`0x${PRIVATE_KEY}`]
-    }
-  }
+    blast_sepolia: {
+      url: 'https://sepolia.blast.io',
+      accounts: [PRIVATE_KEY]
+    },
+  },
 };
